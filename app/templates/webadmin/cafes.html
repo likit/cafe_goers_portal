@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block style %}
+{{super()}}
+table, th, td {
+  border: 1px solid black;
+  border-radius: 5px;
+}
+{% endblock %}
+
+{% block content %}
+<h1>All Cafes</h1>
+<table>
+    {% for cafe in cafes %}
+    <tr>
+        <td>Name</td>
+        <td>{{cafe.name}}</td>
+    </tr>
+    <tr>
+        <td>Address</td>
+        <td>{{cafe.address}}</td>
+    </tr>
+    <tr>
+        <td colspan="2"><a>Edit</a></td>
+    </tr>
+</table>
+<a href="{{url_for('webadmin.index')}}">Back</a>
+{% endfor %}
+
+{% endblock %}
