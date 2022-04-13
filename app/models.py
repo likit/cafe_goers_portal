@@ -1,3 +1,7 @@
+from geoalchemy2 import Geometry
+from shapely.geometry import Point
+from geoalchemy2.shape import from_shape
+
 from app import db
 from sqlalchemy.sql import func
 
@@ -8,8 +12,23 @@ class Address(db.Model):
     street = db.Column('street', db.String, info={'label': 'Street'})
     province = db.Column('province', db.String, info={'label': 'District'})
     district = db.Column('district', db.String, info={'label': 'Province'})
+    created_at = db.Column('created_at', db.DateTime(timezone=True),
+                           server_default=func.now())
+    updated_at = db.Column('updated_at', db.DateTime(timezone=True),
+                           onupdate=func.now())
+    lat = db.Column('lat', db.Float, info={'label': 'Latitude'})
+    lon = db.Column('lon', db.Float, info={'label': 'Longitude'})
+    wkb_geometry = db.Column(Geometry('POINT', srid=4326))
+
+    def add_geometry(self):
+        self.wkb_geometry = from_shape(Point(self.lon, self.lat), srid=4326)
+
     def __str__(self):
         return ' '.join([self.street, self.district, self.province])
+
+    @property
+    def location(self):
+        return f'{self.lat:.4f}, {self.lon:.4f}'
 
 
 class Cafe(db.Model):
