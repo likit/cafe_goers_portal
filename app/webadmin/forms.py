@@ -16,6 +16,7 @@ class ModelForm(BaseModelForm):
 class AddressForm(ModelForm):
     class Meta:
         model = Address
+        only = ['province', 'street', 'district', 'lat', 'lon']
 
 
 class CafeForm(ModelForm):

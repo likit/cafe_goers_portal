@@ -16,12 +16,14 @@ def add_cafe():
         if form.validate_on_submit():
             cafe = Cafe()
             form.populate_obj(cafe)
+            if cafe.address.lat and cafe.address.lon:
+                cafe.address.add_geometry()
             db.session.add(cafe)
             db.session.commit()
             return redirect(url_for('webadmin.index'))
         else:
             print(form.errors)
-    return render_template('webadmin/cafe_edit.html', form=form)
+    return render_template('webadmin/cafe_add.html', form=form)
 
 
 @webadmin.route('/cafes')

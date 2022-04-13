@@ -24,6 +24,15 @@
         <label>{{form.address.province.label}}</label>
         {{form.address.province()}}
     </p>
+    <h2>Geolocation</h2>
+    <p>
+        <label>{{form.address.lat.label}}</label>
+        {{form.address.lat()}}
+    </p>
+    <p>
+        <label>{{form.address.lon.label}}</label>
+        {{form.address.lon()}}
+    </p>
     <a href="{{url_for('webadmin.index')}}">Back</a>
     <input type="submit" value="Submit">
 </form>
