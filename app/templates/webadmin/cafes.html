@@ -21,6 +21,23 @@ table, th, td {
         <td>{{cafe.address}}</td>
     </tr>
     <tr>
+        <td>Instagram Posts</td>
+        <td>
+            <table>
+                {% for post in cafe.ig_posts %}
+                <tr>
+                    <td>{{post|safe}}</td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td>
+                        <a href="{{url_for('webadmin.add_ig_post', cafe_id=cafe.id)}}">Add</a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
         <td colspan="2"><a>Edit</a></td>
     </tr>
 </table>

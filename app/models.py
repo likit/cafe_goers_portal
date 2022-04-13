@@ -30,11 +30,13 @@ class InstagramEmbedded(db.Model):
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
     embedded_url = db.Column('embedded_url', db.Text, nullable=False)
     cafe_id = db.Column('cafe_id', db.ForeignKey('cafes.id'))
-    cafe = db.relation(Cafe, backref=db.backref('instagrams',
+    cafe = db.relation(Cafe, backref=db.backref('ig_posts',
                                                 lazy='dynamic',
                                                 cascade='all, delete-orphan'))
     created_at = db.Column('created_at', db.DateTime(timezone=True),
                            server_default=func.now())
     updated_at = db.Column('updated_at', db.DateTime(timezone=True),
                            onupdate=func.now())
+    def __str__(self):
+        return self.embedded_url
 

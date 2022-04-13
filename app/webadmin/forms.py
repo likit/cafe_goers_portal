@@ -24,3 +24,9 @@ class CafeForm(ModelForm):
         exclude = ['created_at', 'updated_at']
 
     address = ModelFormField(AddressForm)
+
+
+class InstagramPostForm(ModelForm):
+    class Meta:
+        model = InstagramEmbedded
+        only = ['embedded_url']

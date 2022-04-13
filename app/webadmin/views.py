@@ -28,3 +28,17 @@ def add_cafe():
 def list_cafes():
     cafes = Cafe.query.all()
     return render_template('webadmin/cafes.html', cafes=cafes)
+
+
+@webadmin.route('/cafes/<int:cafe_id>/ig-post/add', methods=['GET', 'POST'])
+def add_ig_post(cafe_id):
+    form = InstagramPostForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            post = InstagramEmbedded()
+            form.populate_obj(post)
+            post.cafe_id = cafe_id
+            db.session.add(post)
+            db.session.commit()
+            return redirect(url_for('webadmin.list_cafes'))
+    return render_template('webadmin/ig_url_add.html', form=form)
