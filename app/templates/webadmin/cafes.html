@@ -30,7 +30,9 @@
                     <table>
                         {% for post in cafe.ig_posts %}
                         <tr>
-                            <td>{{post|safe}}</td>
+                            <td>
+                                <iframe src="{{post}}/embed" frameborder="0" scrolling="no" width="320" height="640" allowtransparency="true"></iframe>
+                            </td>
                         </tr>
                         {% endfor %}
                         <tr>
