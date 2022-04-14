@@ -85,9 +85,9 @@ class Cafe(db.Model):
                                   'choices': [(i, c) for i, c in enumerate(['$-$$', '$$-$$$', '$$$-$$$$'])],
                                   }
                             )
-    service_charge_rate = db.Column('service_charge_rate', db.Float(), default=0.0,
-                                    info={'label': 'Service Charge Rate'})
-    vat_included = db.Column('vat_included', db.Boolean, default=True, info={'label': 'Vat included', 'description': 'ราคารวมภาษีมูลค่าเพิ่มแล้ว'})
+    service_charge_rate = db.Column('service_charge_rate', db.Float(), info={'label': 'Service Charge Rate'})
+    vat_included = db.Column('vat_included', db.Boolean, default=True,
+                             info={'label': 'Vat included', 'description': 'ราคารวมภาษีมูลค่าเพิ่มแล้ว'})
     parking_avail = db.Column('parking_avail', db.String, info={'label': 'Parking Availability',
                                                                 'choices': [(c, c) for c in ['<10', '10-20', '>20']]})
     parking_note = db.Column('parking_note', db.Text(), info={'label': 'Parking Note'})
