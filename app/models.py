@@ -89,7 +89,7 @@ class Cafe(db.Model):
     vat_included = db.Column('vat_included', db.Boolean, default=True,
                              info={'label': 'Vat included', 'description': 'ราคารวมภาษีมูลค่าเพิ่มแล้ว'})
     parking_avail = db.Column('parking_avail', db.String, info={'label': 'Parking Availability',
-                                                                'choices': [(c, c) for c in ['<10', '10-20', '>20']]})
+                                                                'choices': [(c, c) for c in ['None', '<10', '10-20', '>20']]})
     parking_note = db.Column('parking_note', db.Text(), info={'label': 'Parking Note'})
     parking_fee = db.Column('parking_fee', db.Boolean, info={'label': 'Parking Fee'})
     free_wifi = db.Column('free_wifi', db.Boolean, info={'label': 'Free WiFi'})
