@@ -10,6 +10,66 @@
         <label>{{form.name.label}}</label>
         {{form.name()}}
     </p>
+    <p>
+        <label>{{form.price_level.label}}</label>
+        {{form.price_level()}}
+    </p>
+    <h2>Styles</h2>
+    <p>
+        {{form.styles()}}
+    </p>
+    <h2>Zone Availability</h2>
+    <p>
+        {{form.zones()}}
+    </p>
+    <h2>Seating</h2>
+    <p>
+        <label>{{form.seating_avail.label}}</label>
+        {{form.seating_avail()}}
+    </p>
+    <h2>Amenities</h2>
+    <p>
+        <label>
+            {{form.pet_friendly()}}
+            {{form.pet_friendly.label}}
+        </label>
+    </p>
+    <p>
+        <label>
+            {{form.free_wifi()}}
+            {{form.free_wifi.label}}
+        </label>
+    </p>
+    <h2>Recommended Activities</h2>
+    <p>
+        {{form.activities()}}
+    </p>
+    <h2>Parking</h2>
+    <p>
+        <label>{{form.parking_avail.label}}</label>
+        {{form.parking_avail()}}
+    </p>
+    <p>
+        <label>
+            {{form.parking_fee()}}
+            {{form.parking_fee.label}}
+        </label>
+    </p>
+    <p>
+        <label>{{form.parking_note.label}}</label>
+        {{form.parking_note()}}
+    </p>
+    <p>
+        <label>{{form.service_charge_rate.label}}</label>
+        {{form.service_charge_rate()}}
+    </p>
+    <p>
+        <label>
+            {{form.vat_included()}}
+            {{form.vat_included.label}}
+            {{form.vat_included.description}}
+        </label>
+    </p>
     <h2>Address</h2>
     {{form.address.hidden_tag()}}
     <p>
