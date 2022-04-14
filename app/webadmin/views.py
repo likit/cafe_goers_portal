@@ -104,3 +104,17 @@ def add_ig_post(cafe_id):
             db.session.commit()
             return redirect(url_for('webadmin.list_cafes'))
     return render_template('webadmin/ig_url_add.html', form=form)
+
+
+@webadmin.route('/ig-posts/<int:post_id>/edit', methods=['GET', 'POST'])
+def edit_ig_post(post_id):
+    post = InstagramEmbedded.query.get(post_id)
+    form = InstagramPostForm(obj=post)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            form.populate_obj(post)
+            db.session.add(post)
+            db.session.commit()
+            flash('Data have been updated.', 'success')
+            return redirect(url_for('webadmin.list_cafes'))
+    return render_template('webadmin/ig_url_add.html', form=form)
