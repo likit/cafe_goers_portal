@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Find Place</h1>
+{% if places %}
+<h3>Results</h3>
+<table>
+    <th>Name</th>
+    <th>Address</th>
+    <th>Map</th>
+    <th>Action</th>
+    {% for p in places %}
+    <tr>
+        <td>{{p.name}}</td>
+        <td>{{p.formatted_address}}</td>
+        <td><a href="{{p.url}}">See a map</a></td>
+        <td><a href="{{url_for('webadmin.add_cafe', place_id=p.place_id)}}">Choose</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+<form method="post">
+    {{form.hidden_tag()}}
+    <p>
+        <label>{{form.name.label}}</label>
+        {{form.name()}}
+    </p>
+    <a href="{{url_for('webadmin.index')}}">Back</a>
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}

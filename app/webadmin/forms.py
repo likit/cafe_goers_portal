@@ -1,5 +1,6 @@
 from app import db
 from flask_wtf import FlaskForm
+from wtforms import StringField
 from wtforms_alchemy import (model_form_factory, ModelFormField, )
 from app.models import *
 
@@ -13,10 +14,15 @@ class ModelForm(BaseModelForm):
         return db.session
 
 
+class PlaceSearchForm(FlaskForm):
+    name = StringField('Place name')
+
+
+
 class AddressForm(ModelForm):
     class Meta:
         model = Address
-        only = ['province', 'street', 'district', 'lat', 'lon']
+        exclude = ['created_at', 'updated_at', 'wkb_geometry']
 
 
 class CafeForm(ModelForm):

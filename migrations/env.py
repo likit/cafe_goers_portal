@@ -1,6 +1,7 @@
 from __future__ import with_statement
 
 import logging
+import re
 from logging.config import fileConfig
 
 from flask import current_app
@@ -26,6 +27,12 @@ config.set_main_option(
         '%', '%%'))
 target_metadata = current_app.extensions['migrate'].db.metadata
 
+exclude_tables = ['spatial_ref_sys']
+
+
+def include_object(object, name, type_, *args, **kwargs):
+    return not (type_ == 'table' and name in exclude_tables)
+
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
@@ -46,7 +53,7 @@ def run_migrations_offline():
     """
     url = config.get_main_option("sqlalchemy.url")
     context.configure(
-        url=url, target_metadata=target_metadata, literal_binds=True
+        url=url, target_metadata=target_metadata, literal_binds=True, include_object=include_object
     )
 
     with context.begin_transaction():
@@ -78,6 +85,7 @@ def run_migrations_online():
             connection=connection,
             target_metadata=target_metadata,
             process_revision_directives=process_revision_directives,
+            include_object=include_object,
             **current_app.extensions['migrate'].configure_args
         )
 
