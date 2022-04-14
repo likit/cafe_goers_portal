@@ -1,33 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<h1>Find Place</h1>
-{% if places %}
-<h3>Results</h3>
-<table>
-    <th>Name</th>
-    <th>Address</th>
-    <th>Map</th>
-    <th>Action</th>
-    {% for p in places %}
-    <tr>
-        <td>{{p.name}}</td>
-        <td>{{p.formatted_address}}</td>
-        <td><a href="{{p.url}}">See a map</a></td>
-        <td><a href="{{url_for('webadmin.add_cafe', place_id=p.place_id)}}">Choose</a></td>
-    </tr>
-    {% endfor %}
-</table>
-{% endif %}
-<form method="post">
-    {{form.hidden_tag()}}
-    <p>
-        <label>{{form.name.label}}</label>
-        {{form.name()}}
-    </p>
-    <a href="{{url_for('webadmin.index')}}">Back</a>
-    <input type="submit" value="Submit">
-</form>
-
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column is-two-thirds is-offset-2">
+                <h1 class="title has-text-centered">Find Place</h1>
+                {% if places %}
+                <h3 class="subtitle has-text-centered">Search Results</h3>
+                <table class="table">
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Map</th>
+                    <th>Action</th>
+                    {% for p in places %}
+                    <tr>
+                        <td>{{p.name}}</td>
+                        <td>{{p.formatted_address}}</td>
+                        <td><a href="{{p.url}}">See a map</a></td>
+                        <td><a href="{{url_for('webadmin.add_cafe', place_id=p.place_id)}}">Choose</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                {% endif %}
+                <div class="box">
+                    <form method="post">
+                        {{form.hidden_tag()}}
+                        <div class="field">
+                            <label class="label">{{form.name.label}}</label>
+                            {{form.name(class="input", placeholder="e.g. Herringbone Bangkok")}}
+                            <p class="help is-info">Add city or country to narrow down the search.</p>
+                        </div>
+                        <a class="button is-light" href="{{url_for('webadmin.index')}}">Back</a>
+                        <input class="button is-success is-outlined" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
