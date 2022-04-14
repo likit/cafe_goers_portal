@@ -3,105 +3,167 @@
 {% block title %}Add/Edit Cafe{% endblock %}
 
 {% block content %}
-<h1>Cafe Form</h1>
-<form method="post">
-    {{form.hidden_tag()}}
-    <p>
-        <label>{{form.name.label}}</label>
-        {{form.name()}}
-    </p>
-    <p>
-        <label>{{form.price_level.label}}</label>
-        {{form.price_level()}}
-    </p>
-    <h2>Styles</h2>
-    <p>
-        {{form.styles()}}
-    </p>
-    <h2>Zone Availability</h2>
-    <p>
-        {{form.zones()}}
-    </p>
-    <h2>Seating</h2>
-    <p>
-        <label>{{form.seating_avail.label}}</label>
-        {{form.seating_avail()}}
-    </p>
-    <h2>Amenities</h2>
-    <p>
-        <label>
-            {{form.pet_friendly()}}
-            {{form.pet_friendly.label}}
-        </label>
-    </p>
-    <p>
-        <label>
-            {{form.free_wifi()}}
-            {{form.free_wifi.label}}
-        </label>
-    </p>
-    <h2>Recommended Activities</h2>
-    <p>
-        {{form.activities()}}
-    </p>
-    <h2>Parking</h2>
-    <p>
-        <label>{{form.parking_avail.label}}</label>
-        {{form.parking_avail()}}
-    </p>
-    <p>
-        <label>
-            {{form.parking_fee()}}
-            {{form.parking_fee.label}}
-        </label>
-    </p>
-    <p>
-        <label>{{form.parking_note.label}}</label>
-        {{form.parking_note()}}
-    </p>
-    <p>
-        <label>{{form.service_charge_rate.label}}</label>
-        {{form.service_charge_rate()}}
-    </p>
-    <p>
-        <label>
-            {{form.vat_included()}}
-            {{form.vat_included.label}}
-            {{form.vat_included.description}}
-        </label>
-    </p>
-    <h2>Address</h2>
-    {{form.address.hidden_tag()}}
-    <p>
-        <label>{{form.address.street.label}}</label>
-        {{form.address.street()}}
-    </p>
-    <p>
-        <label>{{form.address.subdistrict.label}}</label>
-        {{form.address.subdistrict()}}
-    </p>
-    <p>
-        <label>{{form.address.district.label}}</label>
-        {{form.address.district()}}
-    </p>
-    <p>
-        <label>{{form.address.province.label}}</label>
-        {{form.address.province()}}
-    </p>
-    <p>
-        <label>{{form.address.postal_code.label}}</label>
-        {{form.address.postal_code()}}
-    </p>
-    <h2>Geolocation</h2>
-    <p>
-        <label>{{form.address.lat.label}}</label>
-        {{form.address.lat()}}
-    </p>
-    <p>
-        <label>{{form.address.lon.label}}</label>
-        {{form.address.lon()}}
-    </p>
-    <a href="{{url_for('webadmin.index')}}">Back</a>
-    <input type="submit" value="Submit">
-</form>
+<section class="section">
+    <div class="columns">
+        <div class="column is-one-third is-offset-4">
+            <div class="container">
+                <h1 class="title has-text-centered">Cafe Form</h1>
+                <form method="post">
+                    {{form.hidden_tag()}}
+                    <div class="box">
+                        <h2 class="title">General Information</h2>
+                        <p class="field">
+                            <label class="label">{{form.name.label}}</label>
+                        <div class="control">
+                            {{form.name(class="input")}}
+                        </div>
+                        </p>
+                        <p class="field">
+                            <label class="label">{{form.price_level.label}}</label>
+                            <div class="select">
+                                {{form.price_level()}}
+                            </div>
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h2 class="title">Styles</h2>
+                        <p class="field">
+                            {{form.styles()}}
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h2 class="title">Zone Availability</h2>
+                        <p class="field">
+                            {{form.zones()}}
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h2 class="title">Seating</h2>
+                        <p class="field">
+                            <label class="label">{{form.seating_avail.label}}</label>
+                        <div class="select">
+                            {{form.seating_avail()}}
+                        </div>
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h2 class="title">Amenities</h2>
+                        <p class="field">
+                            <label class="checkbox">
+                                {{form.pet_friendly()}}
+                                {{form.pet_friendly.label}}
+                            </label>
+                        </p>
+                        <p class="field">
+                            <label class="checkbox">
+                                {{form.free_wifi()}}
+                                {{form.free_wifi.label}}
+                            </label>
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h2 class="title">Recommended Activities</h2>
+                        <p class="field">
+                            {{form.activities()}}
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h2 class="title">Parking</h2>
+                        <p class="field">
+                            <label class="label">{{form.parking_avail.label}}</label>
+                        <div class="select">
+                            {{form.parking_avail()}}
+                        </div>
+                        </p>
+                        <p class="field">
+                            <label class="checkbox">
+                                {{form.parking_fee()}}
+                                {{form.parking_fee.label}}
+                            </label>
+                        </p>
+                        <p class="field">
+                            <label class="label">{{form.parking_note.label}}</label>
+                            {{form.parking_note(class="textarea")}}
+                        </p>
+                    </div>
+                    <div class="box">
+                        <p class="field">
+                            <label class="label">{{form.service_charge_rate.label}}</label>
+                            <div class="control">
+                                {{form.service_charge_rate(class="input")}}
+                            </div>
+                        </p>
+                        <div class="field">
+                            <label class="checkbox">
+                                {{form.vat_included()}}
+                                {{form.vat_included.label}}
+                                <p class="help is-info">
+                                    {{form.vat_included.description}}
+                                </p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <h2 class="title">Address</h2>
+                        {{form.address.hidden_tag()}}
+                        <p class="field">
+                            <label class="label">{{form.address.street.label}}</label>
+                            <div class="control">
+                                {{form.address.street(class="input")}}
+                            </div>
+                        </p>
+                        <p class="field">
+                            <label class="label">{{form.address.subdistrict.label}}</label>
+                            <div class="control">
+                                {{form.address.subdistrict(class="input")}}
+                            </div>
+                        </p>
+                        <p class="field">
+                            <label class="label">{{form.address.district.label}}</label>
+                            <div class="control">
+                                {{form.address.district(class="input")}}
+                            </div>
+                        </p>
+                        <p class="field">
+                            <label class="label">{{form.address.province.label}}</label>
+                            <div class="control">
+                                {{form.address.province(class="input")}}
+                            </div>
+                        </p>
+                        <p class="field">
+                            <label class="label">{{form.address.postal_code.label}}</label>
+                            <div class="control">
+                                {{form.address.postal_code(class="input")}}
+                            </div>
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h2 class="title">Geolocation</h2>
+                        <p class="field">
+                            <label class="label">{{form.address.lat.label}}</label>
+                            <div class="control">
+                                {{form.address.lat(class="input")}}
+                            </div>
+                        </p>
+                        <p class="field">
+                            <label class="label">{{form.address.lon.label}}</label>
+                            <div class="control">
+                                {{form.address.lon(class="input")}}
+                            </div>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <div class="buttons is-centered">
+                                <a class="button is-light" href="{{url_for('webadmin.index')}}">Back</a>
+                                <input class="button is-success" type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
 {% endblock %}

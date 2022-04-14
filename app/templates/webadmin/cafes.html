@@ -2,52 +2,67 @@
 
 {% block style %}
 {{super()}}
-table, th, td {
-  border: 1px solid black;
-  border-radius: 5px;
-}
 {% endblock %}
 
 {% block content %}
-<h1>All Cafes</h1>
-<table>
-    {% for cafe in cafes %}
-    <tr>
-        <td>Name</td>
-        <td>{{cafe.name}}</td>
-    </tr>
-    <tr>
-        <td>Address</td>
-        <td>{{cafe.address}}</td>
-    </tr>
-    <tr>
-        <td>Geolocation</td>
-        <td>
-            {{cafe.address.location}}
-        </td>
-    </tr>
-    <tr>
-        <td>Instagram Posts</td>
-        <td>
-            <table>
-                {% for post in cafe.ig_posts %}
-                <tr>
-                    <td>{{post|safe}}</td>
-                </tr>
-                {% endfor %}
-                <tr>
-                    <td>
-                        <a href="{{url_for('webadmin.add_ig_post', cafe_id=cafe.id)}}">Add</a>
-                    </td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2"><a>Edit</a></td>
-    </tr>
-    {% endfor %}
-</table>
-<a href="{{url_for('webadmin.index')}}">Back</a>
+<section class="section">
+    <div class="container">
+        <h1 class="title">All Cafes</h1>
+        <table class="table is-fullwidth">
+            {% for cafe in cafes %}
+            <tr>
+                <td>Name</td>
+                <td>{{cafe.name}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{cafe.address}}</td>
+            </tr>
+            <tr>
+                <td>Geolocation</td>
+                <td>
+                    {{cafe.address.location}}
+                </td>
+            </tr>
+            <tr>
+                <td>Instagram Posts</td>
+                <td>
+                    <table>
+                        {% for post in cafe.ig_posts %}
+                        <tr>
+                            <td>{{post|safe}}</td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>
+                                <a class="button is-outlined is-success" href="{{url_for('webadmin.add_ig_post', cafe_id=cafe.id)}}">
+                                    <span class="icon">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </span>
+                                    <span>Add</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <a href="{{url_for('webadmin.edit_cafe', cafe_id=cafe.id)}}" class="button is-outlined is-info">
+                        <span class="icon">
+                            <i class="fa-solid fa-pen"></i>
+                        </span>
+                            <span>
+                            Edit
+                        </span>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{{url_for('webadmin.index')}}" class="button is-text">Back</a>
+
+    </div>
+</section>
 
 {% endblock %}

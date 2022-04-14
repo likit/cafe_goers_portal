@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-<ul>
-    <li><a href="{{url_for('webadmin.find_place')}}">Find a place</a></li>
-    <li><a href="{{url_for('webadmin.add_cafe')}}">Add a place</a></li>
-    <li><a href="{{url_for('webadmin.list_cafes')}}">List all places</a></li>
-</ul>
+<section class="section">
+    <div class="container">
+        <h1 class="title has-text-centered">Web Admin</h1>
+        <h1 class="subtitle">Select the Menu</h1>
+        <ul>
+            <li><a href="{{url_for('webadmin.find_place')}}">Find a place</a></li>
+            <li><a href="{{url_for('webadmin.add_cafe')}}">Add a place</a></li>
+            <li><a href="{{url_for('webadmin.list_cafes')}}">List all places</a></li>
+        </ul>
+    </div>
+</section>
 
 {% endblock %}

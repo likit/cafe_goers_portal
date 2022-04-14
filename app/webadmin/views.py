@@ -1,7 +1,7 @@
 import os
 
 import googlemaps
-from flask import render_template, request, url_for, redirect
+from flask import render_template, request, url_for, redirect, flash
 
 from .forms import *
 from . import webadmin
@@ -69,6 +69,20 @@ def add_cafe():
             return redirect(url_for('webadmin.index'))
         else:
             print(form.errors)
+    return render_template('webadmin/cafe_add.html', form=form)
+
+
+@webadmin.route('/cafes/<int:cafe_id>/edit', methods=['GET', 'POST'])
+def edit_cafe(cafe_id):
+    cafe = Cafe.query.get(cafe_id)
+    form = CafeForm(obj=cafe)
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            form.populate_obj(cafe)
+            db.session.add(cafe)
+            db.session.commit()
+            flash('Updated data successfully.', 'success')
+        return redirect(url_for('webadmin.list_cafes'))
     return render_template('webadmin/cafe_add.html', form=form)
 
 
