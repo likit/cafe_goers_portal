@@ -14,6 +14,7 @@ class Address(db.Model):
     district = db.Column('district', db.String, info={'label': 'Province'})
     subdistrict = db.Column('subdistrict', db.String, info={'label': 'Sub-district'})
     postal_code = db.Column('postal_code', db.String, info={'label': 'Postal Code'})
+    price_level = db.Column('price_level', db.Integer, info={'label': 'Price Level'})
     created_at = db.Column('created_at', db.DateTime(timezone=True),
                            server_default=func.now())
     updated_at = db.Column('updated_at', db.DateTime(timezone=True),
