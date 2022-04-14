@@ -48,4 +48,4 @@ class CafeForm(ModelForm):
 class InstagramPostForm(ModelForm):
     class Meta:
         model = InstagramEmbedded
-        only = ['embedded_url']
+        only = ['embedded_url', 'official_post']

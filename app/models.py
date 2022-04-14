@@ -101,7 +101,8 @@ class Cafe(db.Model):
 class InstagramEmbedded(db.Model):
     __tablename__ = 'instagram_embeddeds'
     id = db.Column('id', db.Integer, primary_key=True, autoincrement=True)
-    embedded_url = db.Column('embedded_url', db.Text, nullable=False)
+    embedded_url = db.Column('embedded_url', db.Text, nullable=False, info={'label': 'Embedded snippet'})
+    official_post = db.Column('official_post', db.Boolean, default=False, info={'label': 'Official Post'})
     cafe_id = db.Column('cafe_id', db.ForeignKey('cafes.id'))
     cafe = db.relation(Cafe, backref=db.backref('ig_posts',
                                                 lazy='dynamic',
