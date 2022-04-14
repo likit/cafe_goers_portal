@@ -14,7 +14,22 @@ class Address(db.Model):
     district = db.Column('district', db.String, info={'label': 'Province'})
     subdistrict = db.Column('subdistrict', db.String, info={'label': 'Sub-district'})
     postal_code = db.Column('postal_code', db.String, info={'label': 'Postal Code'})
-    price_level = db.Column('price_level', db.Integer, info={'label': 'Price Level'})
+    price_level = db.Column('price_level', db.Integer,
+                            info={'label': 'Price Level',
+                                  'choices': [(i, c) for i, c in enumerate(['$-$$', '$$-$$$', '$$$-$$$$'])],
+                                  }
+                            )
+    service_charge_rate = db.Column('service_charge_rate', db.Float(), default=0.0,
+                                    info={'label': 'Service Charge Rate'})
+    vat_included = db.Column('vat_included', db.Boolean, default=True, info={'label': 'Vat included'})
+    parking_avail = db.Column('parking_avail', db.String, info={'label': 'Parking Availability',
+                                                                'choices': [(c, c) for c in ['<10', '10-20', '>20']]})
+    parking_note = db.Column('parking_note', db.Text(), info={'label': 'Parking Note'})
+    parking_fee = db.Column('parking_fee', db.Boolean, info={'label': 'Parking Fee'})
+    free_wifi = db.Column('free_wifi', db.Boolean, info={'label': 'Free WiFi'})
+    seating_avail = db.Column('seating_avail', db.String, info={'label': 'Seating Availability',
+                                                                'choices': [(c, c) for c in ['<10', '10-20', '>20']]})
+    pet_friendly = db.Column('pet_friendly', db.Boolean, info={'label': 'Pet Friendly'})
     created_at = db.Column('created_at', db.DateTime(timezone=True),
                            server_default=func.now())
     updated_at = db.Column('updated_at', db.DateTime(timezone=True),
@@ -59,6 +74,6 @@ class InstagramEmbedded(db.Model):
                            server_default=func.now())
     updated_at = db.Column('updated_at', db.DateTime(timezone=True),
                            onupdate=func.now())
+
     def __str__(self):
         return self.embedded_url
-
