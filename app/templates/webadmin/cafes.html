@@ -31,9 +31,18 @@
                         {% for post in cafe.ig_posts %}
                         <tr>
                             <td>
-                                <iframe src="{{post}}/embed" frameborder="0" scrolling="no" width="320" height="640" allowtransparency="true"></iframe>
-                                <a href="{{url_for('webadmin.edit_ig_post', post_id=post.id)}}" class="button is-info is-outlined">
-                                    Edit
+                                {{post|safe}}
+                                <a href="{{url_for('webadmin.edit_ig_post', post_id=post.id)}}" class="button is-info">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-pencil"></i>
+                                    </span>
+                                    <span>Edit</span>
+                                </a>
+                                <a href="{{url_for('webadmin.remove_ig_post', post_id=post.id)}}" class="button is-danger">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </span>
+                                    <span>Remove</span>
                                 </a>
                             </td>
                         </tr>

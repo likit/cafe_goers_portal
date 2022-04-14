@@ -115,6 +115,17 @@ def edit_ig_post(post_id):
             form.populate_obj(post)
             db.session.add(post)
             db.session.commit()
-            flash('Data have been updated.', 'success')
+            flash('The post have been updated.', 'success')
             return redirect(url_for('webadmin.list_cafes'))
     return render_template('webadmin/ig_url_add.html', form=form)
+
+
+@webadmin.route('/ig-posts/<int:post_id>/remove', methods=['GET'])
+def remove_ig_post(post_id):
+    post = InstagramEmbedded.query.get(post_id)
+    if post:
+        db.session.delete(post)
+        db.session.commit()
+        flash('The post has been removed.', 'success')
+    return redirect(url_for('webadmin.list_cafes'))
+
